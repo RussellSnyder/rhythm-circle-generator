@@ -27,14 +27,14 @@ export const RhythmicCircleContainer = ({
       {Object.entries(levels).map(([key, { patterns, compliments }]) => (
         <div className="grid grid-cols-2 gap-8 mb-8" key={`level-${key}`}>
           <div className="flex flex-wrap justify-end">
-            {patterns.map((pattern) => (
+            {patterns.map((pattern: number[]) => (
               <div className="" key={pattern.join("")}>
                 <RhythmicCircle pattern={pattern} />
               </div>
             ))}
           </div>
           <div className="flex flex-wrap justify-start">
-            {compliments.map((pattern) => (
+            {compliments.map((pattern: number[]) => (
               <div className="" key={pattern.join("")}>
                 <RhythmicCircle pattern={pattern} />
               </div>

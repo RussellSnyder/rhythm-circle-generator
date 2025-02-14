@@ -7,6 +7,7 @@ export interface BeatProps extends CircleProps {
 
 export const Beat = ({ diameter, x, y, isFilled }: BeatProps) => {
   return (
+    // @ts-expect-error not supporting typescript
     <ReactRough
       config={{
         options: {

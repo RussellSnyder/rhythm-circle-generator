@@ -37,6 +37,7 @@ export const RhythmicCircle = ({ pattern }: RhythmicCirclProps) => {
   });
 
   return (
+    // @ts-expect-error not supporting typescript
     <ReactRough
       config={{
         options: {
