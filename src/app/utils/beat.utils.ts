@@ -51,8 +51,6 @@ export const generateCompliment = (array: number[]): number[] => {
   return array.map((entry) => (entry + 1) % 2);
 };
 
-export const generateArraysOfLengthWithDensity = (length, density) => {};
-
 export const generatePatternsForDensity = (
   numberOfBeats: number,
   density: number
