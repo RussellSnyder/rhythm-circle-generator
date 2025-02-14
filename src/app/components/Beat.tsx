@@ -10,7 +10,13 @@ export const Beat = ({ diameter, x, y, isFilled }: BeatProps) => {
     <ReactRough
       config={{
         options: {
-          fill: isFilled ? "blue" : "none",
+          fill: isFilled ? "#ccaacc" : "none",
+          fillShapeRoughnessGain: 0.5,
+          fillStyle: "solid",
+          fillWeight: 100,
+          bowing: 6,
+          stroke: "black",
+          strokeWidth: 5,
         },
       }}
       renderer="svg"

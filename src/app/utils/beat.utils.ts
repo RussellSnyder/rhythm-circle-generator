@@ -1,6 +1,22 @@
 import G from "generatorics";
 
-export const generateBeatArrays = (numberOfBeats: number) => {
+interface DensityMap {
+  [key: number]: {
+    patterns: number[][];
+    compliments: number[][];
+  };
+}
+
+export const calculateTotalNumberOfPatterns = (
+  densityMap: DensityMap
+): number => {
+  const patterns = Object.values(densityMap)
+    .map(({ patterns, compliments }) => [...patterns, ...compliments])
+    .flat();
+  return patterns.length;
+};
+
+export const generateBeatArrays = (numberOfBeats: number): DensityMap => {
   // example
   // {
   //     1: {
@@ -8,18 +24,17 @@ export const generateBeatArrays = (numberOfBeats: number) => {
   //         right: [[0,1,1,1,1], [1,0,1,1,1]] <- complimentary
   //     }
   // }
-  const densityMap: { [key: number]: unknown } = {};
+  const densityMap: DensityMap = {};
 
   // because 1,0,0,0 (density 1) has the compliment of 0,1,1,1 (density 3)
   // we only need to go half way up number of beats to get all combos
   const isEven = numberOfBeats % 2 === 0;
-  console.log(isEven);
   const maxDensity = isEven
     ? numberOfBeats / 2 + 1
     : Math.round(numberOfBeats / 2);
 
-  [...Array(maxDensity).keys()].forEach((density) => {
-    if (density === 0) return; // no notes? get out of here!
+  const densityArray = new Array(maxDensity);
+  [...densityArray.keys()].forEach((density) => {
     const patternsForLevel = generatePatternsForDensity(numberOfBeats, density);
     densityMap[density] = patternsForLevel;
     // [1,0,0,0,0] compliment is [0,1,1,1,1]
