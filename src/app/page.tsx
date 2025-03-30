@@ -1,43 +1,34 @@
-"use client";
-
-import { ChangeEvent, useCallback, useState } from "react";
-import { RhythmicCircleContainer } from "./components/RhymicCircleContainer";
+import Image from "next/image";
+import Link from "next/link";
+import initialPreviewSrc from "./initial/initial_preview.png";
+import polygonPreviewSrc from "./polygons/polygon_preview.png";
 
 export default function Home() {
-  const [numberOfBeats, setNumberOfBeats] = useState(5);
-
-  const handleOnChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value;
-    setNumberOfBeats(Number(newValue));
-  }, []);
-
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <header>
-        <h1 className="text-4xl mb-4">Rhythmic Circle Generator</h1>
-        <section className="grid grid-col-3">
-          <div className="w-full max-w-sm min-w-[200px]">
-            <label htmlFor="number-of-beats" className="mr-4">
-              Number of Beats:
-            </label>
-            <input
-              className="w-20 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-              type="number"
-              value={numberOfBeats}
-              max={10}
-              min={2}
-              onChange={handleOnChange}
+    <div>
+      <h2>Represenations</h2>
+      <div className="grid grid-cols-2 items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
+        <div className="text-center">
+          <Link className="text-2xl" href="/initial">
+            <Image
+              className="mb-4"
+              src={initialPreviewSrc}
+              alt="circles that look like they are drawn by hand"
             />
-          </div>
-        </section>
-      </header>
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <RhythmicCircleContainer numberOfBeats={numberOfBeats} />
-        {/* <RhythmicCircle /> */}
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        By Russell for Steffen
-      </footer>
+            Initial
+          </Link>
+        </div>
+        <div className="text-center">
+          <Link className="text-2xl" href="/polygons">
+            <Image
+              className="mb-4"
+              src={polygonPreviewSrc}
+              alt="Polygons that look like they are drawn by hand"
+            />
+            Polygons
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
